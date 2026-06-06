@@ -1,0 +1,480 @@
+<!DOCTYPE html><html class="light" lang="id" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Layanan Kami - Eduplex Bandung</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&amp;family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link rel="stylesheet" href="style.css">
+<script src="tailwind-config.js"></script>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="sticky top-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-md border-b border-outline-variant/20 shadow-[0_4px_16px_rgba(192,133,58,0.2)]">
+<div class="flex justify-between items-center px-6 md:px-gutter-desktop h-20 max-w-container-max mx-auto">
+<a href="HomePage.html" class="flex items-center gap-2"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSvPHsQULvrPI1C66YDPJsniJuxs8vvSVUj6e0YUYTf_2ZqGb2Mc5KgKcLGLPPo00QzPjrWcAW5EeUddhewbYYa2Cd8NuzAbOTazyvkFij1dnwYJ4cEol3I2YftIvVLuU-Ssk3aC8E0rRCgUnmbypMTBxMLcHD19Oho0cJ1jM3Ti7TNFUwOg-PFVAI2aKkYwEZzTBK0eW00n7Lh-d08W8L5gb31OZjbssdBRZn36tqXC_RVso-UhTuoukeoSRJRM3n8EgCGoK4EGA" alt="Eduplex Logo" class="h-auto w-[120px] md:w-[140px] object-contain"></a>
+<!-- Desktop Nav -->
+<div class="hidden md:flex items-center gap-space-lg">
+<a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="HomePage.html">Home</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md transition-colors duration-200" href="Services.html">Services</a>
+<a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="About.html">About</a>
+<a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="Contact.html">Contact</a>
+<button onclick="window.location.href='Contact.html'" class="bg-primary-container text-white font-label-md text-label-md px-space-md py-2.5 rounded-lg font-bold shadow-[0_4px_16px_rgba(192,133,58,0.2)] active:scale-95 transition-transform">Join Now</button>
+</div>
+<!-- Mobile Toggle -->
+<button id="mobile-menu-btn" class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<!-- Mobile Menu Dropdown -->
+<div id="mobile-menu" class="hidden md:hidden bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/20 px-6 py-4 absolute w-full left-0 top-20 shadow-[0_4px_16px_rgba(192,133,58,0.2)]">
+<div class="flex flex-col gap-4">
+<a class="text-on-surface-variant font-medium font-label-md text-lg hover:text-primary transition-colors duration-200" href="HomePage.html">Home</a>
+<a class="text-on-surface-variant font-medium font-label-md text-lg hover:text-primary transition-colors duration-200" href="Services.html">Services</a>
+<a class="text-on-surface-variant font-medium font-label-md text-lg hover:text-primary transition-colors duration-200" href="About.html">About</a>
+<a class="text-on-surface-variant font-medium font-label-md text-lg hover:text-primary transition-colors duration-200" href="Contact.html">Contact</a>
+<button onclick="window.location.href='Contact.html'" class="bg-primary-container text-white font-label-md text-lg px-4 py-2.5 rounded-lg font-bold shadow-sm active:scale-95 transition-transform w-full">Join Now</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative overflow-hidden pt-20 pb-space-xl px-5 md:px-gutter-desktop">
+<!-- Abstract Growth Pattern Background -->
+<div class="absolute inset-0 -z-10 bg-surface-bright opacity-50">
+<div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
+<svg class="w-full h-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<path d="M0,400 Q100,300 200,400 T400,400" fill="none" stroke="#006e19" stroke-width="2"></path>
+<path d="M0,350 Q120,250 240,350 T400,350" fill="none" stroke="#006e19" stroke-width="1"></path>
+<path d="M0,300 Q150,150 300,300 T400,300" fill="none" stroke="#006e19" stroke-width="3"></path>
+</svg>
+</div>
+</div>
+<div class="max-w-container-max mx-auto text-center md:text-left grid md:grid-cols-2 items-center gap-space-lg">
+<div class="flex flex-col gap-space-sm">
+<span class="inline-block px-4 py-1 rounded-full bg-primary-light text-primary text-label-md font-label-md w-fit mx-auto md:mx-0">
+                    Integrated Growth Hub
+                </span>
+<h1 class="text-display-hero-mobile md:text-display-hero font-display-hero text-ink leading-tight">
+                    Layanan Kami
+                </h1>
+<p class="text-body-lg text-body max-w-xl">
+                    Temukan ekosistem pertumbuhan terintegrasi di jantung kota Bandung. Kami menyediakan ruang dan fasilitas yang dirancang untuk mendukung profesionalisme dan kreativitas Anda.
+                </p>
+<div class="flex flex-wrap gap-space-sm justify-center md:justify-start pt-space-sm">
+<button onclick="window.location.href='Contact.html'" class="px-8 py-3 bg-primary text-on-primary rounded-[10px] font-bold green-shadow hover:brightness-110 transition-all">Mulai Berkolaborasi</button>
+
+</div>
+</div>
+<div class="relative hidden md:block">
+<div class="rounded-[24px] overflow-hidden green-shadow h-[480px]">
+<img alt="Eduplex Modern Office Space" class="w-full h-full object-cover" data-alt="A bright and airy modern coworking space in Bandung with large windows, featuring ergonomic furniture, lush indoor plants, and wooden accents. The atmosphere is professional yet warm, with natural sunlight streaming through, reflecting a humanist corporate style using a palette of white and organic greens." src="Assets/images/Meeting_room5.png">
+</div>
+<!-- Floating Metric -->
+<div class="absolute -bottom-6 -left-6 bg-white p-space-md rounded-[14px] shadow-xl flex items-center gap-4">
+<div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="groups">groups</span>
+</div>
+<div>
+<div class="font-headline-section-mobile text-ink leading-none">500+</div>
+<div class="text-caption text-muted">Anggota Komunitas</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Services Grid -->
+<section class="py-section-padding px-5 md:px-gutter-desktop bg-white">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-space-lg gap-space-sm">
+<div class="max-w-2xl">
+<h2 class="text-headline-section-mobile md:text-headline-section font-headline-section text-ink">Ruang Kerja Profesional</h2>
+<p class="text-body text-muted mt-2">Pilih paket yang paling sesuai dengan kebutuhan produktivitas dan pertumbuhan bisnis Anda.</p>
+</div>
+<div class="h-[2px] flex-grow bg-outline-variant/30 mb-4 mx-space-md hidden md:block"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Coworking Space -->
+<div class="bg-white border border-outline-variant/30 rounded-[14px] p-space-md flex flex-col h-full service-card-hover transition-all duration-300">
+<div class="w-14 h-14 bg-primary-light rounded-[10px] flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="laptop_chromebook">laptop_chromebook</span>
+</div>
+<h3 class="font-headline-section-mobile text-xl text-ink mb-space-sm">Coworking Space</h3>
+<ul class="flex flex-col gap-3 mb-space-lg flex-grow">
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_circle">check_circle</span>
+                            Akses Internet Kecepatan Tinggi
+                        </li>
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_circle">check_circle</span>
+                            Free Flow Kopi &amp; Teh
+                        </li>
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_circle">check_circle</span>
+                            Ergonomic Seating
+                        </li>
+</ul>
+<button onclick="window.location.href='Contact.html'" class="w-full py-3 bg-primary-container text-on-primary rounded-[10px] font-bold green-shadow">Pesan Sekarang</button>
+</div>
+<!-- Meeting Room -->
+<div class="bg-white border border-outline-variant/30 rounded-[14px] p-space-md flex flex-col h-full service-card-hover transition-all duration-300">
+<div class="w-14 h-14 bg-primary-light rounded-[10px] flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="groups">groups</span>
+</div>
+<h3 class="font-headline-section-mobile text-xl text-ink mb-space-sm">Meeting Room</h3>
+<ul class="flex flex-col gap-3 mb-space-lg flex-grow">
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_circle">check_circle</span>
+                            Smart TV &amp; Projector
+                        </li>
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_circle">check_circle</span>
+                            Whiteboard &amp; Markers
+                        </li>
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_circle">check_circle</span>
+                            Sound System Terintegrasi
+                        </li>
+</ul>
+<button onclick="window.location.href='Contact.html'" class="w-full py-3 bg-primary-container text-on-primary rounded-[10px] font-bold green-shadow">Pesan Sekarang</button>
+</div>
+<!-- Private Office -->
+<div class="bg-white border border-outline-variant/30 rounded-[14px] p-space-md flex flex-col h-full service-card-hover transition-all duration-300">
+<div class="w-14 h-14 bg-primary-light rounded-[10px] flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="corporate_fare">corporate_fare</span>
+</div>
+<h3 class="font-headline-section-mobile text-xl text-ink mb-space-sm">Private Office</h3>
+<ul class="flex flex-col gap-3 mb-space-lg flex-grow">
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_circle">check_circle</span>
+                            Ruang Kerja Eksklusif
+                        </li>
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_circle">check_circle</span>
+                            Layanan Resepsionis
+                        </li>
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_circle">check_circle</span>
+                            Privasi &amp; Keamanan 24/7
+                        </li>
+</ul>
+<button onclick="window.location.href='Contact.html'" class="w-full py-3 bg-primary-container text-on-primary rounded-[10px] font-bold green-shadow">Pesan Sekarang</button>
+</div>
+<!-- Virtual Office -->
+<div class="bg-white border border-outline-variant/30 rounded-[14px] p-space-md flex flex-col h-full service-card-hover transition-all duration-300">
+<div class="w-14 h-14 bg-primary-light rounded-[10px] flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="location_on">location_on</span>
+</div>
+<h3 class="font-headline-section-mobile text-xl text-ink mb-space-sm">Virtual Office</h3>
+<ul class="flex flex-col gap-3 mb-space-lg flex-grow">
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_circle">check_circle</span>
+                            Alamat Bisnis Strategis
+                        </li>
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_circle">check_circle</span>
+                            Penanganan Surat &amp; Paket
+                        </li>
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_circle">check_circle</span>
+                            Domain &amp; Email Bisnis
+                        </li>
+</ul>
+<button onclick="window.location.href='Contact.html'" class="w-full py-3 bg-primary-container text-on-primary rounded-[10px] font-bold green-shadow">Pesan Sekarang</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Creative & Education Space (Bento Grid Style) -->
+<section class="py-section-padding px-5 md:px-gutter-desktop bg-surface-container-low">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-space-lg">
+<h2 class="text-headline-section-mobile md:text-headline-section font-headline-section text-ink">Creative &amp; Education</h2>
+<p class="text-body text-muted max-w-2xl mx-auto mt-2">Wadah ekspresi dan pengembangan diri bagi talenta muda dan profesional di Bandung.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md h-auto md:h-[900px]">
+<!-- Public Speaking -->
+<div class="md:col-span-8 relative rounded-[14px] overflow-hidden group cursor-pointer bg-ink">
+<img alt="Public Speaking Class" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500" data-alt="A professional public speaking workshop taking place in a modern auditorium with warm ambient lighting. A speaker is engaging a focused audience of diverse young professionals. The environment is sophisticated and inspiring, featuring organic textures and a soft green and white color palette typical of a modern education hub." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATb8GwdFKc3mMnB5dYfb3mMJP2TvGbIUSRMKbTTg8P2J_XIHWUctg2Ko5pZc1p1z-_mjP2RVjhHCb72PW2OE5TfAsLpm9_0ZqSv7KO7Yw6vSN8h7YleyN1I_xHuh-7YsULRWrrIYf9A7gVeF0wDMITGiBlnP57eApw3vY0fsUBwjGoi-KutsfvH-nNvXPi7y-VNWbq0kzkubJvG9CEPF_VmjJPyvTxJftGOhB2w2J9-7uaAFSrD-qCXTlYZ7RM2ZMTVaQAZ3iOT0E">
+<div class="absolute bottom-0 left-0 p-space-lg w-full bg-gradient-to-t from-ink via-ink/40 to-transparent">
+<div class="px-3 py-1 bg-primary text-on-primary text-caption rounded-full w-fit mb-2">Populer</div>
+<h4 class="text-white font-headline-section-mobile text-2xl mb-1">Public Speaking Mastery</h4>
+<p class="text-white/80 text-body-md max-w-md">Bangun kepercayaan diri dan kemampuan komunikasi persuasif Anda bersama para ahli.</p>
+</div>
+</div>
+<!-- Dance Class -->
+<div class="md:col-span-4 relative rounded-[14px] overflow-hidden group cursor-pointer bg-primary">
+<img alt="Dance Class" class="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-500" data-alt="A dynamic dance class in a studio with mirrored walls and light wood flooring. Dancers are captured in motion, illuminated by soft, high-key natural light from large windows. The overall aesthetic is energetic yet clean, following a minimalist and humanist design approach with subtle green accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD105uH-j9C9gSxmzSfFaL35sMtkY8USnGjMddyqnI-9ks9p-Pz02Afw-3UcFyFZ2i_dOkIgWsqEktCi6IOQxjO-JXCc7bjW8-YZEwONyWxeq-MYMjH4sCjO_Pek5VSx91yc418GripE5OGbUCvxopDqkTR8VZfcsnclJxjhKUN4cdE0HRvrRUNZTay6RMKy5ZsrK5IWi-WsOwS6ZtO5Bw6LnTrrFor61ppusfDzENVBU0lIe4P-DMjy5HgeoRLwf4Hwu51zUTGOA">
+<div class="absolute bottom-0 left-0 p-space-md w-full bg-gradient-to-t from-primary/80 to-transparent">
+<h4 class="text-white font-headline-section-mobile text-xl mb-1">Modern Dance Class</h4>
+<p class="text-white/90 text-caption">Ekspresikan diri melalui gerak dan ritme kontemporer.</p>
+</div>
+</div>
+<!-- Modeling Class -->
+<div class="md:col-span-4 relative rounded-[14px] overflow-hidden group cursor-pointer bg-tertiary">
+<img alt="Modeling Class" class="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-500" data-alt="A high-fashion modeling class or photography workshop in a clean, professional studio environment. A model is posing while an instructor provides guidance. The lighting is crisp and modern, emphasizing texture and form, set within a sophisticated architectural space with a signature humanist green touch." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfUTYPPMzYFkmq7LLRzZUPs6KIaZB8Xy_MJKglXBTeLEh-obI5TtL87kYRAD0EwpkrAw_sO0QCGUEQb5A36WCetOxo95TSjavRwyflZyzFYQuCwseMvAV1ZXmSHQBjV7D8APeTovgO7rvBakTvtyg3XoMX1MPSg1FpLrU-5GI7ATyX1IZAhIwkXJnnITf9OKFZpa4iU6lGrIc73jJPNDOE-eZbFAV5Zup1H6Zt6utQGAFEU6YKaFCKfpkcUQWgob3V2X5hi8qTy5Y">
+<div class="absolute bottom-0 left-0 p-space-md w-full bg-gradient-to-t from-tertiary/80 to-transparent">
+<h4 class="text-white font-headline-section-mobile text-xl mb-1">Modeling Academy</h4>
+<p class="text-white/90 text-caption">Pelajari teknik catwalk dan pose profesional.</p>
+</div>
+</div>
+<!-- Comic Class -->
+<div class="md:col-span-8 relative rounded-[14px] overflow-hidden group cursor-pointer bg-secondary">
+<img alt="Comic Class untuk Anak" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500" data-alt="A creative comic drawing class for children aged 8-14 years old in a bright, clean, professional studio environment. Kids are happily drawing comics on desks. An instructor is guiding them. The lighting is crisp and modern, emphasizing creativity, set within a sophisticated architectural space with a signature humanist green touch." src="Assets/images/Comic_Class_Kids.png">
+<div class="absolute bottom-0 left-0 p-space-lg w-full bg-gradient-to-t from-secondary via-secondary/40 to-transparent">
+<h4 class="text-white font-headline-section-mobile text-2xl mb-1">Comic Class</h4>
+<p class="text-white/80 text-body-md max-w-md">Kelas menggambar komik khusus untuk anak usia 8-14 tahun. Kembangkan imajinasi dan kreativitas mereka bersama ilustrator profesional.</p>
+</div>
+</div>
+<!-- Feature Block -->
+<div class="md:col-span-12 bg-white rounded-[14px] p-space-lg flex flex-col justify-center border border-outline-variant/20 shadow-sm">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="star">star</span>
+<div>
+<h5 class="font-bold text-ink">Mentor Berpengalaman</h5>
+<p class="text-caption text-muted">Belajar langsung dari praktisi industri terbaik di bidangnya.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="calendar_today">calendar_today</span>
+<div>
+<h5 class="font-bold text-ink">Jadwal Fleksibel</h5>
+<p class="text-caption text-muted">Tersedia kelas pagi, siang, dan malam menyesuaikan rutinitas Anda.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Business Support Services -->
+<section class="py-section-padding px-5 md:px-gutter-desktop bg-white">
+<div class="max-w-container-max mx-auto grid md:grid-cols-2 gap-space-xl items-center">
+<div class="order-2 md:order-1">
+<h2 class="text-headline-section-mobile md:text-headline-section font-headline-section text-ink mb-space-md">Business Support Services</h2>
+<div class="space-y-space-md">
+<div class="p-space-md rounded-[14px] bg-surface-container hover:bg-primary-light transition-colors duration-300 flex gap-space-md items-start">
+<div class="bg-white p-3 rounded-[10px] green-shadow">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="gavel">gavel</span>
+</div>
+<div>
+<h4 class="font-bold text-lg text-ink">Legal Consultation</h4>
+<p class="text-body-md text-on-surface-variant">Bantuan profesional untuk pendirian PT, CV, pendaftaran HAKI, dan kontrak bisnis untuk startup Anda.</p>
+</div>
+</div>
+<div class="p-space-md rounded-[14px] bg-surface-container hover:bg-primary-light transition-colors duration-300 flex gap-space-md items-start">
+<div class="bg-white p-3 rounded-[10px] green-shadow">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="verified">verified</span>
+</div>
+<div>
+<h4 class="font-bold text-lg text-ink">Halal Certification</h4>
+<p class="text-body-md text-on-surface-variant">Layanan pendampingan sertifikasi halal yang efisien untuk produk UMKM dan bisnis kuliner Bandung.</p>
+</div>
+</div>
+</div>
+<button onclick="window.location.href='Contact.html'" class="mt-space-lg px-8 py-4 bg-ink text-white rounded-[10px] font-bold hover:bg-black transition-all flex items-center gap-2 group">
+                    Konsultasi Gratis Sekarang
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="order-1 md:order-2">
+<div class="relative">
+<img alt="Business Support Consultation" class="rounded-[24px] w-full h-[400px] object-cover green-shadow" data-alt="A realistic, attractive photography of two people discussing company legal documents and business formation at a sleek modern table. The setting is bright, airy, and clean, featuring soft daylight, warm wooden textures, and subtle amber accents." src="Assets/images/Legal_Consultation.png">
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl -z-10"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Why Choose Us -->
+<section class="py-section-padding px-5 md:px-gutter-desktop bg-white text-ink">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-space-xl">
+<h2 class="text-headline-section-mobile md:text-headline-section font-headline-section">Mengapa Memilih Eduplex?</h2>
+<div class="w-24 h-1 bg-primary mx-auto mt-4 rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg border-y border-ink/10 py-space-xl">
+<div class="text-center group">
+<div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-space-md group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-white text-4xl" data-icon="speed">speed</span>
+</div>
+<h3 class="font-bold text-xl mb-2">High-Speed Internet</h3>
+<p class="text-ink/70">Koneksi stabil dan cepat untuk mendukung kelancaran pekerjaan remote dan video conferencing Anda.</p>
+</div>
+<div class="text-center group">
+<div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-space-md group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-white text-4xl" data-icon="distance">distance</span>
+</div>
+<h3 class="font-bold text-xl mb-2">Central Location</h3>
+<p class="text-ink/70">Berlokasi strategis di pusat kota Bandung (Dago), memudahkan akses dari berbagai arah.</p>
+</div>
+<div class="text-center group">
+<div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-space-md group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-white text-4xl" data-icon="psychology">psychology</span>
+</div>
+<h3 class="font-bold text-xl mb-2">Professional Community</h3>
+<p class="text-ink/70">Jejaring dengan ratusan profesional, entrepreneur, dan kreatif yang siap berkolaborasi.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Banner -->
+<section class="py-space-xl px-6 md:px-gutter-desktop">
+<div class="max-w-container-max mx-auto bg-ink rounded-[2rem] p-10 md:p-14 text-center text-white relative overflow-hidden shadow-2xl">
+<div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+<div class="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full -ml-32 -mb-32 blur-3xl"></div>
+<div class="relative z-10 text-center max-w-2xl mx-auto">
+<h2 class="font-headline-section text-[32px] md:text-headline-section mb-4 text-white">Mulai Kolaborasi Anda Hari Ini</h2>
+<p class="text-body-md md:text-body-lg mb-8 opacity-90 text-white/90">Hubungi kami untuk mengatur jadwal kunjungan dan temukan layanan yang paling sesuai dengan kebutuhan Anda.</p>
+<button onclick="window.location.href='Contact.html'" class="bg-primary text-white px-8 py-4 rounded-[10px] font-bold text-lg hover:scale-105 active:scale-95 transition-transform shadow-[0_4px_16px_rgba(192,133,58,0.4)]">
+                    Hubungi Kami
+                </button>
+</div>
+</div>
+</section>
+<!-- AI Chat Widget -->
+<div id="ai-chat-widget" class="fixed bottom-8 right-8 z-[60] flex flex-col items-end">
+    <!-- Chat Window -->
+    <div id="chat-window" class="hidden mb-4 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-outline-variant/30 overflow-hidden flex-col transition-all duration-300 opacity-0 translate-y-4">
+        <!-- Header -->
+        <div class="bg-primary text-white p-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined fill-icon">smart_toy</span>
+                <span class="font-bold font-label-md">Eduplex Assistant</span>
+            </div>
+            <button id="close-chat" class="text-white hover:text-white/80 transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        
+        <!-- Messages Area -->
+        <div id="chat-messages" class="p-4 h-80 overflow-y-auto flex flex-col gap-3 bg-surface-container-lowest">
+            <!-- Initial Message -->
+            <div class="flex items-start gap-2 max-w-[85%]">
+                <div class="w-8 h-8 rounded-full bg-primary-light text-primary flex items-center justify-center flex-shrink-0">
+                    <span class="material-symbols-outlined text-sm">smart_toy</span>
+                </div>
+                <div class="bg-surface-container p-3 rounded-2xl rounded-tl-none text-body-sm text-on-surface">
+                    Halo! Saya asisten virtual Eduplex. Ada yang bisa saya bantu hari ini? Silakan pilih topik di bawah ini.
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Options Area -->
+        <div id="faq-options" class="p-4 border-t border-outline-variant/20 bg-white flex flex-wrap gap-2">
+            <button onclick="askFAQ('Jam Operasional', 'Eduplex buka setiap hari mulai pukul 08.00 hingga 20.00 WIB.')" class="text-xs bg-primary-light text-primary border border-primary/20 px-3 py-1.5 rounded-full hover:bg-primary hover:text-white transition-colors text-left">Jam Operasional</button>
+            <button onclick="askFAQ('Lokasi', 'Kami berlokasi di Jl. Ir. H. Juanda No. 84, Dago, Bandung, Jawa Barat 40132.')" class="text-xs bg-primary-light text-primary border border-primary/20 px-3 py-1.5 rounded-full hover:bg-primary hover:text-white transition-colors text-left">Lokasi</button>
+            <button onclick="askFAQ('Harga Coworking', 'Harga coworking space mulai dari Rp 75.000/hari. Untuk detail paket bulanan silakan cek halaman Services kami.')" class="text-xs bg-primary-light text-primary border border-primary/20 px-3 py-1.5 rounded-full hover:bg-primary hover:text-white transition-colors text-left">Harga Coworking</button>
+            <button onclick="askFAQ('Booking Meeting Room', 'Anda dapat mem-booking meeting room melalui halaman Contact atau langsung menghubungi kami via WhatsApp.')" class="text-xs bg-primary-light text-primary border border-primary/20 px-3 py-1.5 rounded-full hover:bg-primary hover:text-white transition-colors text-left">Booking Meeting Room</button>
+            <a href="https://wa.me/6285285660148" class="text-xs bg-[#25D366] text-white border border-[#25D366]/20 px-3 py-1.5 rounded-full hover:bg-[#128C7E] transition-colors flex items-center gap-1 text-left"><span class="material-symbols-outlined text-[14px]">chat</span> Chat WA Admin</a>
+        </div>
+    </div>
+
+    <!-- Chat Button -->
+    <div class="relative flex items-center justify-center">
+        <!-- Attention Elements Container -->
+        <div id="chat-attention-elements" class="transition-opacity duration-300">
+            <!-- Attention Tooltip -->
+            <div class="absolute right-full mr-4 bg-white text-primary text-sm font-bold px-4 py-2 rounded-2xl rounded-br-none shadow-lg whitespace-nowrap animate-bounce pointer-events-none border border-outline-variant/30">
+                Butuh Bantuan?
+            </div>
+            <!-- Ping Animation Background -->
+            <div class="absolute inset-0 bg-primary rounded-full animate-ping opacity-75" style="animation-duration: 2s;"></div>
+        </div>
+        <!-- Actual Button -->
+        <button id="chat-toggle" class="relative bg-primary text-white w-14 h-14 flex items-center justify-center rounded-full shadow-[0_4px_16px_rgba(192,133,58,0.4)] hover:scale-110 active:scale-95 transition-all group z-10">
+            <span class="material-symbols-outlined fill-icon text-[28px] transition-transform group-hover:rotate-12">chat</span>
+        </button>
+    </div>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-high pt-space-xl mt-space-xl">
+<div class="max-w-container-max mx-auto px-6 md:px-gutter-desktop grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div>
+<img alt="Eduplex Logo" class="w-[140px] h-auto object-contain mb-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxQMDNXFrUxQqphmR7bVHRkNydKAgdsBdJZwlGEcLPlimrgs941CuUKOgMs2NCfuQTmw3vkKKNcNYsZUf9hH2WR1H3PJgGcB5wICrWb7JgysENfMQUP7TuNSx9UhR72vw6457KRgoqA1QOoH10pZIJNm6QbpIdBb0O_mS3HovRyIVYz0iAoW-pHIjvAA_G_Lj_9LB1kNBlCJqHNyd_OI2txdFODkvUr5dJV9ffNpD81YnBq2ofaxsBVMQSx8jFrYFRYSZcLFO1aS0">
+<p class="text-on-surface-variant text-body-md leading-relaxed font-body-md mb-6 max-w-xs">
+Integrated Growth Hub di jantung Dago, Bandung. Ruang belajar dan bekerja yang humanis.
+</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">public</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">share</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">mail</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-on-surface font-label-md uppercase tracking-wider">Layanan Utama</h4>
+<ul class="space-y-4 text-on-surface-variant font-body-md">
+<li><a class="hover:text-primary transition-all inline-block hover:translate-x-1" href="Services.html">Coworking Space</a></li>
+<li><a class="hover:text-primary transition-all inline-block hover:translate-x-1" href="Services.html">Meeting Rooms</a></li>
+<li><a class="hover:text-primary transition-all inline-block hover:translate-x-1" href="Services.html">Private Office</a></li>
+<li><a class="hover:text-primary transition-all inline-block hover:translate-x-1" href="Services.html">Virtual Office</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-on-surface font-label-md uppercase tracking-wider">Kontak</h4>
+<address class="not-italic text-on-surface-variant space-y-4 font-body-md">
+<p class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">location_on</span>
+Jl. Ir. H. Juanda No. 84, Dago,<br>Bandung, Jawa Barat 40132
+</p>
+<p class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">call</span>
++62 852-8566-0148
+</p>
+<p class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">mail</span>
+eduplex.id@gmail.com  
+</p>
+</address>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-6 md:px-gutter-desktop mt-8 py-6 border-t border-outline-variant/30 text-center text-xs text-on-surface-variant font-caption opacity-80 uppercase">
+© 2026 Eduplex Bandung. All rights reserved.
+</div>
+</footer>
+<script>
+        // Micro-interactions and subtle scroll effects
+        document.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+
+        // Simple button hover sound or animation trigger (simulation)
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+            });
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
+
+
+
+
+
+
+<script src="chat-widget.js"></script>
+</body></html>
