@@ -3,55 +3,56 @@ tailwind.config = {
     theme: {
         extend: {
             "colors": {
-                // Brand (Amber)
-                "primary": "#C0853A",
-                "primary-dark": "#A06828",
-                "primary-light": "#F5ECD6",
-                "primary-muted": "#E8C89A",
-                "primary-container": "#C0853A",
+                // Brand — Emerald
+                "primary": "#1F5C2E",
+                "primary-dark": "#1B5E20",
+                "primary-light": "#EDF5ED",
+                "primary-muted": "#B8D8B8",
+                "primary-container": "#1F5C2E",
                 "on-primary": "#ffffff",
                 "on-primary-container": "#ffffff",
 
-                // Secondary (Rose)
-                "secondary": "#8C2645",
-                "secondary-dark": "#6E1A34",
-                "secondary-light": "#FCEEF2",
-                "secondary-muted": "#ECCBD0",
+                // Secondary — Sage
+                "secondary": "#4A8C4A",
+                "secondary-dark": "#2C5F2E",
+                "secondary-light": "#F2F7F2",
+                "secondary-muted": "#D8E8D8",
                 "on-secondary": "#ffffff",
 
-                // Tertiary (Cobalt)
-                "tertiary": "#1A3A7C",
-                "tertiary-light": "#E6EEFF",
+                // Tertiary — Forest Dark
+                "tertiary": "#1A2A1A",
+                "tertiary-mid": "#2D4A2D",
+                "tertiary-light": "#EDF5ED",
                 "on-tertiary": "#ffffff",
 
-                // Neutrals & Surface
-                "ink": "#111827",
-                "body": "#374151",
-                "muted": "#6B7280",
-                "subtle": "#9CA3AF",
-                "border": "#E8E8E8",
-                "surface": "#F5F5F5",
+                // Neutral — Forest Gray
+                "ink": "#1A2A1A",
+                "body": "#2D4A2D",
+                "muted": "#3A5A3A",
+                "subtle": "#8AAA8A",
+                "border": "#E8EDE8",
+                "surface": "#F5F9F5",
                 "white": "#FFFFFF",
                 "background": "#FFFFFF",
-                "on-background": "#111827",
-                "on-surface": "#111827",
-                "on-surface-variant": "#374151",
+                "on-background": "#1A2A1A",
+                "on-surface": "#1A2A1A",
+                "on-surface-variant": "#2D4A2D",
                 "surface-bright": "#FFFFFF",
-                "surface-dim": "#E8E8E8",
+                "surface-dim": "#E8EDE8",
                 "surface-container-lowest": "#FFFFFF",
                 "surface-container-low": "#F9FAFB",
-                "surface-container": "#F5F5F5",
-                "surface-container-high": "#E8E8E8",
+                "surface-container": "#F5F9F5",
+                "surface-container-high": "#E8EDE8",
                 "surface-container-highest": "#D1D5DB",
-                "outline": "#9CA3AF",
-                "outline-variant": "#E8E8E8",
+                "outline": "#8AAA8A",
+                "outline-variant": "#E8EDE8",
 
                 // Functional
-                "success": "#3A5A25",
-                "warning": "#C0853A",
+                "success": "#1F5C2E",
+                "warning": "#F57F17",
                 "error": "#DC2626",
                 "on-error": "#ffffff",
-                "info": "#1A3A7C"
+                "info": "#1B5E20"
             },
             "borderRadius": {
                 "DEFAULT": "0.25rem",
