@@ -64,12 +64,12 @@ tailwind.config = {
                 "unit": "8px",
                 "space-sm": "16px",
                 "container-max": "1280px",
-                "section-padding": "80px",
+                "section-padding": "64px",
                 "space-lg": "48px",
                 "space-xs": "8px",
                 "space-md": "24px",
-                "space-xl": "80px",
-                "gutter-desktop": "80px"
+                "space-xl": "64px",
+                "gutter-desktop": "64px"
             },
             "fontFamily": {
                 "label-md": ["DM Sans", "sans-serif"],
