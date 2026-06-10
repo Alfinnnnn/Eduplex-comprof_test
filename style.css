@@ -36,3 +36,160 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+/* ── VIEWER PAGE STYLES ── */
+.viewer-page {
+    overflow: hidden;
+    user-select: none;
+    background-color: #1A2A1A;
+}
+
+.tb-btn {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.12s, color 0.12s;
+    color: rgba(255,255,255,0.75);
+    background: transparent;
+}
+.tb-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.tb-btn.active { color: #fff; background: rgba(255,255,255,0.15); }
+.tb-btn:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+
+.sidebar {
+    width: 0;
+    transition: width 0.22s ease;
+}
+.sidebar.open { width: 110px; }
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 2px; }
+
+.thumb-item {
+    padding: 8px 8px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    flex-shrink: 0;
+    transition: background 0.1s;
+}
+.thumb-item:hover { background: rgba(255,255,255,0.05); }
+.thumb-item.active { background: rgba(255,255,255,0.1); }
+
+.thumb-canvas-wrap {
+    width: 82px;
+    height: 116px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fff;
+    position: relative;
+    flex-shrink: 0;
+}
+.thumb-canvas-wrap canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+}
+.thumb-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eee;
+    font-size: 9px;
+    color: #999;
+}
+
+.thumb-num {
+    font-size: 10px;
+    color: rgba(255,255,255,0.55);
+}
+.thumb-item.active .thumb-num { color: rgba(255,255,255,0.75); }
+
+.book-spread {
+    display: flex;
+    gap: 4px;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.6);
+    border-radius: 2px;
+    overflow: visible;
+    transition: transform 0.25s ease;
+    position: relative;
+}
+
+.page-wrap {
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: inset -4px 0 10px rgba(0,0,0,0.12);
+}
+.page-wrap.right-page { box-shadow: inset 4px 0 10px rgba(0,0,0,0.12); }
+
+.page-wrap canvas { display: block; }
+
+@keyframes flipIn {
+    from { opacity: 0.4; transform: scaleX(0.94); }
+    to   { opacity: 1;   transform: scaleX(1); }
+}
+.flip-anim { animation: flipIn 0.2s ease; }
+
+.page-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.95);
+    z-index: 5;
+}
+.spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid #e5e7eb;
+    border-top-color: #1F5C2E;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.zoom-badge.show { opacity: 1; }
+
+@media (max-width: 640px) {
+    .toolbar-pill { position: static; transform: none; margin: 0 auto; }
+    .topbar { flex-wrap: wrap; height: auto; padding: 8px 14px; gap: 6px; }
+}
+
+/* ── 3D PAGE TURN STYLES ── */
+.flip-overlay {
+    position: absolute;
+    display: flex;
+    gap: 4px;
+    z-index: 60;
+    perspective: 2500px;
+    pointer-events: none;
+}
+
+.flip-layer {
+    position: absolute;
+    top: 0;
+    background: #fff;
+    box-shadow: inset -4px 0 10px rgba(0,0,0,0.12), 0 10px 30px rgba(0,0,0,0.5);
+    backface-visibility: hidden;
+    overflow: hidden;
+}
+
+.flip-layer canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}

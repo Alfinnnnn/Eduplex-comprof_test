@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="id" style="">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Digital Library - Eduplex</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="tailwind-config.js"></script>
+
+    <!-- PDF.js dari CDN untuk membaca meta data PDF (jumlah halaman) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+    <!-- Memuat daftar file secara otomatis -->
+    <script src="assets/book/list.js"></script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-muted">
+    
+    <!-- TopNavBar -->
+    <nav class="sticky top-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-md border-b border-outline-variant/20 shadow-[0_4px_16px_rgba(31,92,46,0.15)]">
+        <div class="flex justify-between items-center px-6 md:px-gutter-desktop h-20 max-w-container-max mx-auto">
+            <a href="index.html" class="flex items-center gap-2">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSvPHsQULvrPI1C66YDPJsniJuxs8vvSVUj6e0YUYTf_2ZqGb2Mc5KgKcLGLPPo00QzPjrWcAW5EeUddhewbYYa2Cd8NuzAbOTazyvkFij1dnwYJ4cEol3I2YftIvVLuU-Ssk3aC8E0rRCgUnmbypMTBxMLcHD19Oho0cJ1jM3Ti7TNFUwOg-PFVAI2aKkYwEZzTBK0eW00n7Lh-d08W8L5gb31OZjbssdBRZn36tqXC_RVso-UhTuoukeoSRJRM3n8EgCGoK4EGA" alt="Eduplex Logo" class="h-auto w-[120px] md:w-[140px] object-contain">
+            </a>
+            
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-space-lg">
+                <a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="index.html">Home</a>
+                <a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="Services.html">Services</a>
+                <a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="About.html">About</a>
+                <!-- We can make 'Books' active if we add it to the nav, or just leave it standard. -->
+                <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md transition-colors duration-200" href="Books.html">Library</a>
+                <a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="Contact.html">Contact</a>
+                <button onclick="window.location.href='Contact.html'" class="bg-primary-container text-white font-label-md text-label-md px-space-md py-2.5 rounded-lg font-bold shadow-[0_4px_16px_rgba(31,92,46,0.15)] active:scale-95 transition-transform">Join Now</button>
+            </div>
+            
+            <!-- Mobile Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-primary">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/20 px-6 py-4 absolute w-full left-0 top-20 shadow-[0_4px_16px_rgba(31,92,46,0.15)]">
+            <div class="flex flex-col gap-4">
+                <a class="text-on-surface-variant font-medium font-label-md text-lg hover:text-primary transition-colors duration-200" href="index.html">Home</a>
+                <a class="text-on-surface-variant font-medium font-label-md text-lg hover:text-primary transition-colors duration-200" href="Services.html">Services</a>
+                <a class="text-on-surface-variant font-medium font-label-md text-lg hover:text-primary transition-colors duration-200" href="About.html">About</a>
+                <a class="text-primary font-bold font-label-md text-lg transition-colors duration-200" href="Books.html">Library</a>
+                <a class="text-on-surface-variant font-medium font-label-md text-lg hover:text-primary transition-colors duration-200" href="Contact.html">Contact</a>
+                <button onclick="window.location.href='Contact.html'" class="bg-primary-container text-white font-label-md text-lg px-4 py-2.5 rounded-lg font-bold shadow-sm active:scale-95 transition-transform w-full">Join Now</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="min-h-screen bg-surface-container-low">
+        
+        <!-- Hero Section -->
+        <section class="bg-primary text-white py-16 relative overflow-hidden">
+            <div class="max-w-container-max mx-auto px-6 md:px-gutter-desktop relative z-10">
+                <div class="font-label-md tracking-widest uppercase text-primary-muted mb-3 font-semibold text-sm">Perpustakaan Digital</div>
+                <h1 class="font-display-hero-mobile md:font-display-hero mb-4 text-white">Baca buku Anda di mana saja</h1>
+                <p class="font-body-lg text-white/80 max-w-2xl">Baca PDF dari koleksi tersedia di browser dengan tampilan flipbook.</p>
+            </div>
+            <!-- Deco -->
+            <div class="absolute -top-16 -right-16 w-96 h-96 rounded-full border-[60px] border-white/5 pointer-events-none"></div>
+        </section>
+
+        <!-- Toolbar -->
+        <div class="border-b border-outline-variant/30 bg-surface-container-lowest sticky top-20 z-40 shadow-sm">
+            <div class="max-w-container-max mx-auto px-6 md:px-gutter-desktop py-4 flex flex-col md:flex-row items-center gap-4">
+                
+                <!-- Search & Filter Wrapper -->
+                <div class="flex w-full md:w-auto flex-1 gap-3">
+                    <div class="relative flex-1 min-w-[200px] max-w-xs">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+                        <input type="text" id="searchInput" oninput="filterBooks()" class="w-full pl-10 pr-4 py-2.5 bg-surface-container border border-outline-variant/50 rounded-lg focus:border-primary focus:bg-white outline-none transition-colors font-body-md text-sm" placeholder="Cari judul atau penulis...">
+                    </div>
+                    
+                    <select id="categoryFilter" onchange="filterBooks()" class="py-2.5 px-4 bg-surface-container border border-outline-variant/50 rounded-lg focus:border-primary outline-none cursor-pointer font-body-md text-sm text-on-surface">
+                        <option value="">Semua Kategori</option>
+                        <option value="Sains">Sains & Teknologi</option>
+                        <option value="Lingkungan">Lingkungan</option>
+                        <option value="Pendidikan">Pendidikan</option>
+                        <option value="Umum">Umum</option>
+                    </select>
+                </div>
+                
+                <!-- Action Buttons Wrapper -->
+                <div class="flex w-full md:w-auto items-center justify-between md:justify-end gap-3">
+
+
+                    <div class="flex gap-2">
+                        <button id="btnGridView" class="w-10 h-10 flex items-center justify-center border border-primary rounded-lg text-primary bg-primary-light transition-colors" onclick="setViewMode('grid')" title="Grid view">
+                            <span class="material-symbols-outlined text-[20px]">grid_view</span>
+                        </button>
+                        <button id="btnListView" class="w-10 h-10 flex items-center justify-center border border-outline-variant/50 rounded-lg text-on-surface-variant hover:border-primary hover:text-primary transition-colors bg-surface-container-lowest" onclick="setViewMode('list')" title="List view">
+                            <span class="material-symbols-outlined text-[20px]">view_list</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="max-w-container-max mx-auto px-6 md:px-gutter-desktop py-12">
+            
+
+            <!-- Book Collection -->
+            <div class="mb-4">
+                <span class="font-label-md text-sm font-bold tracking-widest uppercase text-on-surface-variant">Koleksi Tersedia</span>
+            </div>
+            
+            <!-- Grid Container -->
+            <div id="bookGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                <!-- Cards generated by JS -->
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container-high pt-space-xl mt-auto">
+        <div class="max-w-container-max mx-auto px-6 md:px-gutter-desktop grid grid-cols-1 md:grid-cols-3 gap-space-md">
+            <div>
+                <img alt="Eduplex Logo" class="w-[140px] h-auto object-contain mb-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxQMDNXFrUxQqphmR7bVHRkNydKAgdsBdJZwlGEcLPlimrgs941CuUKOgMs2NCfuQTmw3vkKKNcNYsZUf9hH2WR1H3PJgGcB5wICrWb7JgysENfMQUP7TuNSx9UhR72vw6457KRgoqA1QOoH10pZIJNm6QbpIdBb0O_mS3HovRyIVYz0iAoW-pHIjvAA_G_Lj_9LB1kNBlCJqHNyd_OI2txdFODkvUr5dJV9ffNpD81YnBq2ofaxsBVMQSx8jFrYFRYSZcLFO1aS0">
+                <p class="text-on-surface-variant text-body-md leading-relaxed font-body-md mb-6 max-w-xs">
+                    Integrated Growth Hub di jantung Dago, Bandung. Ruang belajar dan bekerja yang humanis.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-on-surface font-label-md uppercase tracking-wider">Layanan Utama</h4>
+                <ul class="space-y-4 text-on-surface-variant font-body-md">
+                    <li><a class="hover:text-primary transition-all inline-block hover:translate-x-1" href="Services.html">Coworking Space</a></li>
+                    <li><a class="hover:text-primary transition-all inline-block hover:translate-x-1" href="Services.html">Meeting Rooms</a></li>
+                    <li><a class="hover:text-primary transition-all inline-block hover:translate-x-1" href="Services.html">Private Office</a></li>
+                    <li><a class="hover:text-primary transition-all inline-block hover:translate-x-1" href="Services.html">Virtual Office</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-on-surface font-label-md uppercase tracking-wider">Kontak</h4>
+                <address class="not-italic text-on-surface-variant space-y-4 font-body-md">
+                    <p class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-primary text-[20px]">location_on</span>
+                        Jl. Ir. H. Juanda No. 84, Dago,<br>Bandung, Jawa Barat 40132
+                    </p>
+                    <p class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-[20px]">call</span>
+                        +62 852-8566-0148
+                    </p>
+                </address>
+            </div>
+        </div>
+        <div class="max-w-container-max mx-auto px-6 md:px-gutter-desktop mt-8 py-6 border-t border-outline-variant/30 text-center text-xs text-on-surface-variant font-caption opacity-80 uppercase">
+            © 2026 Eduplex Bandung. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Navbar blur behavior on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('py-2');
+            } else {
+                nav.classList.remove('py-2');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        /* ============================================================
+           DATA BUKU (OTOMATIS DARI NAMA FILE)
+        ============================================================ */
+        let BOOKS = [];
+        let filteredBooks = [];
+        let currentView = 'grid';
+
+        /* ── RENDER KARTU ── */
+        function renderBooks(books) {
+            const grid = document.getElementById('bookGrid');
+            
+            if (books.length === 0) {
+                grid.className = 'w-full py-12';
+                grid.innerHTML = `
+                    <div class="text-center text-on-surface-variant flex flex-col items-center">
+                        <span class="material-symbols-outlined text-[48px] opacity-40 mb-4">menu_book</span>
+                        <p class="font-body-md">Tidak ada buku yang cocok.</p>
+                    </div>`;
+                return;
+            }
+
+            // Restore correct grid/list class layout
+            if (currentView === 'grid') {
+                grid.className = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6';
+            } else {
+                grid.className = 'grid grid-cols-1 md:grid-cols-2 gap-4';
+            }
+
+            grid.innerHTML = books.map(book => {
+                const isGrid = currentView === 'grid';
+                
+                // Cover template
+                const coverHTML = book.cover
+                    ? `<img src="${book.cover}" alt="${book.title}" class="w-full h-full object-cover" loading="lazy"/>`
+                    : `<div class="w-full h-full flex flex-col items-center ${isGrid ? 'justify-end p-4' : 'justify-center p-2'} relative overflow-hidden" style="background: linear-gradient(160deg, ${book.coverTop}, ${book.coverBot})">
+                           <div class="absolute -top-4 -right-4 ${isGrid ? 'w-24 h-24 border-[16px]' : 'w-16 h-16 border-[8px]'} rounded-full border-white/10 pointer-events-none"></div>
+                           <div class="font-headline-section-mobile ${isGrid ? 'text-[14px]' : 'text-[10px]'} leading-tight text-white text-center relative z-10">${book.title}</div>
+                           ${isGrid ? `<div class="font-caption text-[11px] text-white/70 mt-1 text-center relative z-10">${book.author}</div>` : ''}
+                       </div>`;
+
+                if (isGrid) {
+                    return `
+                        <div class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(31,92,46,0.12)] hover:border-primary-muted transition-all flex flex-col h-full group" onclick="openBook('${book.file}', '${encodeURIComponent(book.title)}', '${book.pages}')">
+                            <div class="w-full aspect-[3/4] bg-surface-container relative">
+                                ${coverHTML}
+                            </div>
+                            <div class="p-4 flex-1 flex flex-col gap-1.5">
+                                <div class="font-label-md text-[10px] font-bold tracking-wider uppercase text-secondary">${book.category}</div>
+                                <div class="font-label-md text-[14px] font-semibold text-on-surface line-clamp-2 leading-snug group-hover:text-primary transition-colors">${book.title}</div>
+                                <div class="font-caption text-[12px] text-on-surface-variant line-clamp-1">${book.author}</div>
+                                <div class="font-caption text-[11px] text-outline mt-auto pt-1">${book.pages} halaman · ${book.year}</div>
+                            </div>
+                            <button class="mx-4 mb-4 py-2 bg-surface-container text-primary border border-primary-muted/50 rounded-lg font-label-md text-sm font-bold group-hover:bg-primary-light transition-colors" onclick="event.stopPropagation(); openBook('${book.file}', '${encodeURIComponent(book.title)}', '${book.pages}')">
+                                Buka Buku
+                            </button>
+                        </div>`;
+                } else {
+                    return `
+                        <div class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl overflow-hidden cursor-pointer hover:-translate-y-0.5 hover:shadow-md hover:border-primary-muted transition-all flex flex-row items-center group" onclick="openBook('${book.file}', '${encodeURIComponent(book.title)}', '${book.pages}')">
+                            <div class="w-20 sm:w-24 h-full shrink-0 min-h-[100px] sm:min-h-[120px] relative">
+                                ${coverHTML}
+                            </div>
+                            <div class="p-4 flex-1 flex flex-col gap-1">
+                                <div class="font-label-md text-[15px] font-semibold text-on-surface line-clamp-1 group-hover:text-primary transition-colors">${book.title}</div>
+                                <div class="font-caption text-[13px] text-on-surface-variant">${book.author}</div>
+                                <div class="font-caption text-[12px] text-outline mt-1">${book.pages} halaman · ${book.year}</div>
+                            </div>
+                            <button class="mr-4 px-4 py-2 bg-surface-container text-primary border border-primary-muted/50 rounded-lg font-label-md text-sm font-bold hover:bg-primary-light transition-colors whitespace-nowrap" onclick="event.stopPropagation(); openBook('${book.file}', '${encodeURIComponent(book.title)}', '${book.pages}')">
+                                Buka Buku
+                            </button>
+                        </div>`;
+                }
+            }).join('');
+        }
+
+        /* ── FILTER ── */
+        function filterBooks() {
+            const q = document.getElementById('searchInput').value.toLowerCase();
+            const cat = document.getElementById('categoryFilter').value;
+            filteredBooks = BOOKS.filter(b => {
+                const matchQ = b.title.toLowerCase().includes(q) || b.author.toLowerCase().includes(q);
+                const matchCat = !cat || b.category === cat;
+                return matchQ && matchCat;
+            });
+            renderBooks(filteredBooks);
+        }
+
+        /* ── VIEW MODE ── */
+        function setViewMode(mode) {
+            currentView = mode;
+            
+            const btnGrid = document.getElementById('btnGridView');
+            const btnList = document.getElementById('btnListView');
+
+            // Reset buttons
+            btnGrid.className = 'w-10 h-10 flex items-center justify-center border border-outline-variant/50 rounded-lg text-on-surface-variant hover:border-primary hover:text-primary transition-colors bg-surface-container-lowest';
+            btnList.className = 'w-10 h-10 flex items-center justify-center border border-outline-variant/50 rounded-lg text-on-surface-variant hover:border-primary hover:text-primary transition-colors bg-surface-container-lowest';
+
+            // Active button
+            if (mode === 'grid') {
+                btnGrid.className = 'w-10 h-10 flex items-center justify-center border border-primary rounded-lg text-primary bg-primary-light transition-colors';
+            } else {
+                btnList.className = 'w-10 h-10 flex items-center justify-center border border-primary rounded-lg text-primary bg-primary-light transition-colors';
+            }
+
+            renderBooks(filteredBooks);
+        }
+
+        /* ── BUKA VIEWER ── */
+        function openBook(pdfPath, titleEncoded, pages) {
+            const title = decodeURIComponent(titleEncoded);
+            const params = new URLSearchParams({ pdf: pdfPath, title, pages });
+            window.location.href = 'viewer.html?' + params.toString();
+        }
+
+        /* ── TEBAK KATEGORI BUKU ── */
+        function guessCategory(title) {
+            const t = title.toLowerCase();
+            if (t.includes('data') || t.includes('analisis') || t.includes('statistik') || t.includes('analitik')) return 'Data & Statistik';
+            if (t.includes('bisnis') || t.includes('business') || t.includes('manajemen') || t.includes('marketing') || t.includes('ekonomi')) return 'Bisnis & Ekonomi';
+            if (t.includes('komputer') || t.includes('pemrograman') || t.includes('coding') || t.includes('it') || t.includes('teknologi') || t.includes('software')) return 'Teknologi & IT';
+            if (t.includes('sains') || t.includes('science') || t.includes('fisika') || t.includes('biologi') || t.includes('matematika')) return 'Sains & Ilmu Pengetahuan';
+            if (t.includes('sastra') || t.includes('novel') || t.includes('cerita') || t.includes('puisi') || t.includes('fiksi')) return 'Sastra & Fiksi';
+            if (t.includes('sejarah') || t.includes('history')) return 'Sejarah';
+            if (t.includes('psikologi') || t.includes('mind') || t.includes('behavior') || t.includes('mental')) return 'Psikologi';
+            if (t.includes('pendidikan') || t.includes('education') || t.includes('belajar') || t.includes('sekolah')) return 'Pendidikan';
+            return 'Buku Umum';
+        }
+
+        /* ── HITUNG HALAMAN PDF ── */
+        async function getPdfPageCount(url) {
+            try {
+                const loadingTask = pdfjsLib.getDocument(url);
+                const pdf = await loadingTask.promise;
+                return pdf.numPages;
+            } catch (e) {
+                console.error("Gagal membaca halaman PDF:", url, e);
+                return "-";
+            }
+        }
+
+        /* ── GENERATE BUKU DARI LIST.JS ── */
+        async function fetchBooksAutomatically() {
+            try {
+                // Setup worker PDF.js
+                pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+                // Gunakan daftar file dari list.js
+                if (!window.BOOK_FILES || window.BOOK_FILES.length === 0) {
+                    console.warn("Daftar buku kosong.");
+                    BOOKS = [];
+                    renderBooks(BOOKS);
+                    return;
+                }
+                
+                const uniquePdfs = [...new Set(window.BOOK_FILES)];
+                
+                const colors = [
+                    ['#1F5C2E', '#0a2213'], // Hijau
+                    ['#185FA5', '#042C53'], // Biru
+                    ['#854F0B', '#412402'], // Coklat
+                    ['#534AB7', '#26215C'], // Ungu
+                    ['#993556', '#4B1528']  // Merah
+                ];
+
+                const booksPromises = uniquePdfs.map(async (filename, index) => {
+                    const title = filename.replace(/\.pdf$/i, '').trim();
+                    const author = "-";
+                    const color = colors[index % colors.length];
+                    const category = guessCategory(title);
+                    
+                    const fileUrl = `assets/book/${filename}`;
+                    const pages = await getPdfPageCount(fileUrl);
+
+                    return {
+                        id: index + 1,
+                        title: title,
+                        author: author,
+                        category: category,
+                        pages: pages,
+                        year: "-",
+                        cover: null,
+                        file: fileUrl,
+                        coverTop: color[0],
+                        coverBot: color[1],
+                    };
+                });
+
+                BOOKS = await Promise.all(booksPromises);
+
+            } catch (e) {
+                console.warn("Gagal membaca daftar file otomatis.", e);
+                BOOKS = [];
+            }
+
+            filteredBooks = [...BOOKS];
+            renderBooks(BOOKS);
+        }
+
+        /* ── INIT ── */
+        fetchBooksAutomatically();
+    </script>
+</body>
+</html>

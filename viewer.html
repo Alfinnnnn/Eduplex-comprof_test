@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Viewer — Buku Digital</title>
+    
+    <!-- Design System / Tailwind -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script src="tailwind-config.js"></script>
+
+    <!-- PDF.js dari CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="viewer-page flex flex-col h-screen">
+
+<div class="flex flex-col h-full bg-tertiary w-full">
+
+    <!-- TOP BAR -->
+    <div class="topbar h-12 bg-ink border-b border-white/10 flex items-center px-4 gap-2.5 shrink-0 z-50 justify-between relative">
+        <div class="flex items-center gap-2 flex-1 min-w-0">
+            <button class="flex items-center gap-1 bg-transparent border-none text-white/75 cursor-pointer font-body-md text-[13px] px-2 py-1.5 rounded-md transition-colors hover:bg-white/10 hover:text-white whitespace-nowrap" onclick="window.location.href='Books.html'">
+                <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                Kembali
+            </button>
+            <div class="w-px h-5 bg-white/10 hidden sm:block"></div>
+            <span class="text-[13px] text-white/55 whitespace-nowrap overflow-hidden text-ellipsis flex-1 hidden sm:block" id="docTitle">Memuat dokumen...</span>
+        </div>
+
+        <!-- CENTER PILL -->
+        <div class="toolbar-pill absolute sm:left-1/2 sm:-translate-x-1/2 flex items-center gap-0.5 bg-white/5 border border-white/10 rounded-full px-2.5 py-1">
+            <!-- Thumbnail toggle -->
+            <button class="tb-btn" id="btnThumb" title="Panel thumbnail" onclick="toggleSidebar()">
+                <span class="material-symbols-outlined text-[18px]">grid_view</span>
+            </button>
+
+            <div class="w-px h-3.5 bg-white/15 mx-1"></div>
+
+            <!-- Page number -->
+            <div class="flex items-center gap-1">
+                <input type="number" class="bg-white/10 border-none rounded text-white font-body-md text-[12px] w-10 text-center py-0.5 px-1 outline-none focus:bg-white/15" id="pageInput" value="1" min="1" onchange="goToPageInput()" onkeydown="if(event.key==='Enter')goToPageInput()" />
+                <span class="text-[12px] text-white/55">/ <span id="totalPages">—</span></span>
+            </div>
+
+            <div class="w-px h-3.5 bg-white/15 mx-1"></div>
+
+            <!-- View modes -->
+            <button class="tb-btn active" id="btnSpread" title="Tampilan dua halaman" onclick="setSpreadMode(true)">
+                <span class="material-symbols-outlined text-[18px]">menu_book</span>
+            </button>
+            <button class="tb-btn" id="btnSingle" title="Tampilan satu halaman" onclick="setSpreadMode(false)">
+                <span class="material-symbols-outlined text-[18px]">description</span>
+            </button>
+
+            <div class="w-px h-3.5 bg-white/15 mx-1"></div>
+
+            <!-- Zoom -->
+            <button class="tb-btn" title="Perkecil" onclick="changeZoom(-0.15)">
+                <span class="material-symbols-outlined text-[18px]">zoom_out</span>
+            </button>
+            <button class="tb-btn" title="Perbesar" onclick="changeZoom(0.15)">
+                <span class="material-symbols-outlined text-[18px]">zoom_in</span>
+            </button>
+        </div>
+
+        <!-- RIGHT ACTIONS -->
+        <div class="flex items-center gap-1">
+            <button class="tb-btn" title="Layar penuh" onclick="toggleFullscreen()">
+                <span class="material-symbols-outlined text-[20px]" id="fsIcon">fullscreen</span>
+            </button>
+
+        </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="flex flex-1 overflow-hidden relative">
+
+        <!-- SIDEBAR THUMBNAILS -->
+        <div class="sidebar bg-ink border-r border-white/10 overflow-y-auto overflow-x-hidden shrink-0 flex flex-col" id="sidebar"></div>
+
+        <!-- MAIN VIEWER AREA -->
+        <div class="flex-1 flex flex-col items-center justify-center bg-tertiary-mid relative overflow-hidden" id="viewerMain">
+
+            <button class="absolute top-1/2 -translate-y-1/2 left-4 w-10 h-10 flex items-center justify-center bg-black/45 border border-white/10 text-white/80 rounded-full cursor-pointer z-10 transition-colors hover:bg-black/75 hover:text-white disabled:opacity-20 disabled:cursor-default" id="btnPrev" onclick="navigate(-1)" disabled>
+                <span class="material-symbols-outlined text-[24px]">chevron_left</span>
+            </button>
+
+            <div class="book-spread" id="bookSpread">
+                <!-- pages injected by JS -->
+            </div>
+
+            <button class="absolute top-1/2 -translate-y-1/2 right-4 w-10 h-10 flex items-center justify-center bg-black/45 border border-white/10 text-white/80 rounded-full cursor-pointer z-10 transition-colors hover:bg-black/75 hover:text-white disabled:opacity-20 disabled:cursor-default" id="btnNext" onclick="navigate(1)" disabled>
+                <span class="material-symbols-outlined text-[24px]">chevron_right</span>
+            </button>
+
+            <div class="zoom-badge absolute bottom-3.5 left-1/2 -translate-x-1/2 bg-black/55 text-white/80 text-[11px] px-2.5 py-1 rounded-full pointer-events-none opacity-0 transition-opacity duration-300" id="zoomBadge">100%</div>
+        </div>
+
+    </div>
+
+    <!-- STATUS BAR -->
+    <div class="h-6 bg-ink border-t border-white/10 flex items-center justify-center shrink-0">
+        <span class="text-[11px] text-white/30 tracking-wide" id="statusText">Siap</span>
+    </div>
+
+</div>
+
+<script>
+/* ============================================================
+   KONFIGURASI PDF.js
+============================================================ */
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+/* ============================================================
+   STATE
+============================================================ */
+let pdfDoc       = null;
+let currentPage  = 1;
+let totalPages   = 0;
+let zoomScale    = 1.0;
+let spreadMode   = true;
+let sidebarOpen  = false;
+let renderTask   = null;
+let thumbsLoaded = new Set();
+let zoomTimer    = null;
+let pdfUrl       = null;
+let pdfTitle     = '';
+
+/* ============================================================
+   INISIALISASI — baca URL params
+============================================================ */
+(function init() {
+  const params  = new URLSearchParams(window.location.search);
+  pdfUrl        = params.get('pdf');
+  pdfTitle      = params.get('title') || 'Dokumen';
+  const startPg = parseInt(params.get('page') || '1', 10);
+
+  document.getElementById('docTitle').textContent = pdfTitle;
+  document.title = pdfTitle + ' — Viewer';
+
+  if (!pdfUrl) {
+    showNoPDF();
+    return;
+  }
+
+  loadPDF(pdfUrl, startPg);
+})();
+
+/* ============================================================
+   MUAT PDF
+============================================================ */
+async function loadPDF(url, startPage = 1) {
+  setStatus('Memuat dokumen...');
+  try {
+    const loadingTask = pdfjsLib.getDocument(url);
+    pdfDoc = await loadingTask.promise;
+    totalPages = pdfDoc.numPages;
+
+    document.getElementById('totalPages').textContent = totalPages;
+    document.getElementById('btnPrev').disabled = false;
+    document.getElementById('btnNext').disabled = false;
+
+    currentPage = Math.max(1, Math.min(startPage, totalPages));
+    if (spreadMode && currentPage % 2 === 0) currentPage--;
+
+    await renderSpread();
+    buildSidebar();
+    setStatus('');
+  } catch (err) {
+    setStatus('Gagal memuat dokumen: ' + err.message);
+    console.error(err);
+    showNoPDF('Gagal memuat PDF. Pastikan path file benar dan server mendukung CORS.');
+  }
+}
+
+/* ============================================================
+   RENDER SPREAD
+============================================================ */
+async function renderSpread() {
+  const spread = document.getElementById('bookSpread');
+
+  const main    = document.getElementById('viewerMain');
+  const availW  = main.clientWidth  - 100;
+  const availH  = main.clientHeight - 32;
+
+  const refPage = await pdfDoc.getPage(currentPage);
+  const vp0     = refPage.getViewport({ scale: 1 });
+  const nativeW = vp0.width;
+  const nativeH = vp0.height;
+
+  const pagesShown = (spreadMode && currentPage < totalPages) ? 2 : 1;
+  const scaleByW   = (availW / pagesShown) / nativeW;
+  const scaleByH   = availH / nativeH;
+  const autoScale  = Math.min(scaleByW, scaleByH, 1.8) * zoomScale;
+  const finalScale = Math.max(0.3, autoScale);
+
+  const pageW = Math.floor(nativeW * finalScale);
+  const pageH = Math.floor(nativeH * finalScale);
+
+  spread.innerHTML = '';
+  spread.classList.remove('flip-anim');
+  void spread.offsetWidth;
+  spread.classList.add('flip-anim');
+
+  await renderPageInto(spread, currentPage, pageW, pageH, finalScale, false);
+
+  if (spreadMode && currentPage + 1 <= totalPages) {
+    await renderPageInto(spread, currentPage + 1, pageW, pageH, finalScale, true);
+  }
+
+  updateUI();
+}
+
+async function renderPageInto(container, pageNum, w, h, scale, isRight) {
+  const wrap = document.createElement('div');
+  wrap.className = 'page-wrap' + (isRight ? ' right-page' : '');
+  wrap.style.width  = w + 'px';
+  wrap.style.height = h + 'px';
+
+  const loading = document.createElement('div');
+  loading.className = 'page-loading';
+  loading.innerHTML = '<div class="spinner"></div>';
+  wrap.appendChild(loading);
+  container.appendChild(wrap);
+
+  try {
+    const page = await pdfDoc.getPage(pageNum);
+    const viewport = page.getViewport({ scale });
+    const canvas = document.createElement('canvas');
+    canvas.width  = viewport.width;
+    canvas.height = viewport.height;
+    canvas.style.width  = '100%';
+    canvas.style.height = '100%';
+
+    const ctx = canvas.getContext('2d');
+    await page.render({ canvasContext: ctx, viewport }).promise;
+
+    loading.remove();
+    wrap.appendChild(canvas);
+  } catch (e) {
+    loading.innerHTML = '<span style="font-size:11px;color:#aaa">Error</span>';
+  }
+}
+
+/* ============================================================
+   NAVIGASI (Dengan Efek Flip 3D)
+============================================================ */
+let isFlipping = false;
+
+function cloneCanvasFromWrap(wrap) {
+  if (!wrap) return null;
+  const clone = wrap.cloneNode(true);
+  clone.className = 'flip-layer';
+  clone.style.width = wrap.style.width;
+  clone.style.height = wrap.style.height;
+  
+  const oldC = wrap.querySelector('canvas');
+  const newC = clone.querySelector('canvas');
+  if (oldC && newC) {
+    newC.getContext('2d').drawImage(oldC, 0, 0);
+  }
+  return clone;
+}
+
+async function performFlip(dir, targetPage) {
+  if (isFlipping) return;
+  
+  const spread = document.getElementById('bookSpread');
+  if (!spreadMode || !spread.children.length) {
+    // Mode single page (tanpa flip 3D)
+    currentPage = targetPage;
+    renderSpread();
+    syncThumbActive();
+    return;
+  }
+
+  isFlipping = true;
+
+  // 1. Tangkap elemen DOM lama
+  const oldLeft = spread.querySelector('.page-wrap:not(.right-page)');
+  const oldRight = spread.querySelector('.right-page');
+
+  // Buat overlay wadah animasi
+  const overlay = document.createElement('div');
+  overlay.className = 'flip-overlay';
+  overlay.style.width = spread.offsetWidth + 'px';
+  overlay.style.height = spread.offsetHeight + 'px';
+  // Sinkronisasi posisi dengan book-spread
+  overlay.style.left = spread.offsetLeft + 'px';
+  overlay.style.top = spread.offsetTop + 'px';
+  
+  const main = document.getElementById('viewerMain');
+  main.appendChild(overlay);
+
+  const cloneL1 = cloneCanvasFromWrap(oldLeft);
+  const cloneR1 = cloneCanvasFromWrap(oldRight);
+
+  // Langsung pasang clone ke overlay agar menutupi proses render yang kosong (mencegah flicker)
+  if (cloneL1) {
+    cloneL1.style.left = '0';
+    overlay.appendChild(cloneL1);
+  }
+  if (cloneR1) {
+    cloneR1.style.right = '0';
+    overlay.appendChild(cloneR1);
+  }
+
+  // 2. Render halaman baru secara diam-diam
+  currentPage = targetPage;
+  await renderSpread();
+  syncThumbActive();
+
+  // Beri jeda 1 frame agar DOM baru benar-benar ter-render
+  await new Promise(r => requestAnimationFrame(r));
+
+  // 3. Tangkap DOM baru untuk back-face (punggung kertas)
+  const newLeft = spread.querySelector('.page-wrap:not(.right-page)');
+  const newRight = spread.querySelector('.right-page');
+  const cloneL2 = cloneCanvasFromWrap(newLeft);
+  const cloneR2 = cloneCanvasFromWrap(newRight);
+
+  // Setup posisi dan transisi CSS
+  if (dir > 0) {
+    // ANIMASI NEXT (Buka ke Kanan)
+    if (cloneR1) {
+      cloneR1.style.transformOrigin = 'left center';
+      cloneR1.style.transition = 'transform 0.65s cubic-bezier(0.4, 0.0, 0.2, 1)';
+    }
+    if (cloneL2) {
+      cloneL2.style.left = '0';
+      cloneL2.style.transformOrigin = 'right center';
+      cloneL2.style.transform = 'rotateY(180deg)';
+      cloneL2.style.transition = 'transform 0.65s cubic-bezier(0.4, 0.0, 0.2, 1)';
+      overlay.appendChild(cloneL2);
+    }
+
+    // Trigger pergerakan
+    requestAnimationFrame(() => {
+      if (cloneR1) cloneR1.style.transform = 'rotateY(-180deg)';
+      if (cloneL2) cloneL2.style.transform = 'rotateY(0deg)';
+    });
+
+  } else {
+    // ANIMASI PREV (Buka ke Kiri)
+    if (cloneL1) {
+      cloneL1.style.transformOrigin = 'right center';
+      cloneL1.style.transition = 'transform 0.65s cubic-bezier(0.4, 0.0, 0.2, 1)';
+    }
+    if (cloneR2) {
+      cloneR2.style.right = '0';
+      cloneR2.style.transformOrigin = 'left center';
+      cloneR2.style.transform = 'rotateY(-180deg)';
+      cloneR2.style.transition = 'transform 0.65s cubic-bezier(0.4, 0.0, 0.2, 1)';
+      overlay.appendChild(cloneR2);
+    }
+
+    // Trigger pergerakan
+    requestAnimationFrame(() => {
+      if (cloneL1) cloneL1.style.transform = 'rotateY(180deg)';
+      if (cloneR2) cloneR2.style.transform = 'rotateY(0deg)';
+    });
+  }
+
+  // Hapus overlay penutup setelah transisi usai
+  setTimeout(() => {
+    overlay.remove();
+    isFlipping = false;
+  }, 700);
+}
+
+function navigate(dir) {
+  if (isFlipping) return;
+  const step = spreadMode ? 2 : 1;
+  let target = currentPage + dir * step;
+  target = Math.max(1, Math.min(target, totalPages));
+  if (spreadMode && target % 2 === 0) target = Math.max(1, target - 1);
+  if (target === currentPage) return;
+  
+  performFlip(dir, target);
+}
+
+function goToPage(pageNum) {
+  if (isFlipping) return;
+  let target = Math.max(1, Math.min(pageNum, totalPages));
+  if (spreadMode && target % 2 === 0) target = Math.max(1, target - 1);
+  if (target === currentPage) return;
+  
+  const dir = target > currentPage ? 1 : -1;
+  performFlip(dir, target);
+}
+
+function goToPageInput() {
+  const val = parseInt(document.getElementById('pageInput').value, 10);
+  if (!isNaN(val)) goToPage(val);
+}
+
+/* ============================================================
+   SIDEBAR THUMBNAIL
+============================================================ */
+function buildSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  sidebar.innerHTML = '';
+
+  for (let i = 1; i <= totalPages; i++) {
+    const item = document.createElement('div');
+    item.className = 'thumb-item' + (i === currentPage || i === currentPage + 1 ? ' active' : '');
+    item.dataset.page = i;
+    item.onclick = () => goToPage(i);
+
+    const wrap = document.createElement('div');
+    wrap.className = 'thumb-canvas-wrap';
+    wrap.innerHTML = '<div class="thumb-loading">...</div>';
+    wrap.id = 'thumbWrap' + i;
+
+    const num = document.createElement('div');
+    num.className = 'thumb-num';
+    num.textContent = i;
+
+    item.appendChild(wrap);
+    item.appendChild(num);
+    sidebar.appendChild(item);
+  }
+}
+
+async function loadVisibleThumbs() {
+  const sidebar = document.getElementById('sidebar');
+  const items = sidebar.querySelectorAll('.thumb-item');
+  const sidebarRect = sidebar.getBoundingClientRect();
+
+  for (const item of items) {
+    const pageNum = parseInt(item.dataset.page, 10);
+    if (thumbsLoaded.has(pageNum)) continue;
+
+    const rect = item.getBoundingClientRect();
+    if (rect.top < sidebarRect.bottom + 200 && rect.bottom > sidebarRect.top - 200) {
+      thumbsLoaded.add(pageNum);
+      renderThumb(pageNum);
+    }
+  }
+}
+
+async function renderThumb(pageNum) {
+  const wrap = document.getElementById('thumbWrap' + pageNum);
+  if (!wrap || !pdfDoc) return;
+  try {
+    const page = await pdfDoc.getPage(pageNum);
+    const vp = page.getViewport({ scale: 0.2 });
+    const canvas = document.createElement('canvas');
+    canvas.width  = vp.width;
+    canvas.height = vp.height;
+    const ctx = canvas.getContext('2d');
+    await page.render({ canvasContext: ctx, viewport: vp }).promise;
+    wrap.innerHTML = '';
+    wrap.appendChild(canvas);
+  } catch (e) {
+    wrap.innerHTML = '<div class="thumb-loading" style="font-size:8px">err</div>';
+  }
+}
+
+function syncThumbActive() {
+  const sidebar = document.getElementById('sidebar');
+  sidebar.querySelectorAll('.thumb-item').forEach(el => {
+    const p = parseInt(el.dataset.page, 10);
+    el.classList.toggle('active', p === currentPage || p === currentPage + 1);
+  });
+  const active = sidebar.querySelector('.thumb-item.active');
+  if (active) active.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
+function toggleSidebar() {
+  sidebarOpen = !sidebarOpen;
+  document.getElementById('sidebar').classList.toggle('open', sidebarOpen);
+  document.getElementById('btnThumb').classList.toggle('active', sidebarOpen);
+  if (sidebarOpen) {
+    setTimeout(loadVisibleThumbs, 250);
+  }
+}
+
+document.getElementById('sidebar').addEventListener('scroll', loadVisibleThumbs);
+
+/* ============================================================
+   SPREAD MODE
+============================================================ */
+function setSpreadMode(isSpread) {
+  spreadMode = isSpread;
+  document.getElementById('btnSpread').classList.toggle('active', isSpread);
+  document.getElementById('btnSingle').classList.toggle('active', !isSpread);
+  if (spreadMode && currentPage % 2 === 0) currentPage--;
+  renderSpread();
+}
+
+/* ============================================================
+   ZOOM
+============================================================ */
+function changeZoom(delta) {
+  zoomScale = Math.max(0.4, Math.min(3.0, zoomScale + delta));
+  renderSpread();
+  showZoomBadge();
+}
+
+function showZoomBadge() {
+  const badge = document.getElementById('zoomBadge');
+  badge.textContent = Math.round(zoomScale * 100) + '%';
+  badge.classList.add('show');
+  clearTimeout(zoomTimer);
+  zoomTimer = setTimeout(() => badge.classList.remove('show'), 1400);
+}
+
+/* ============================================================
+   FULLSCREEN
+============================================================ */
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(() => {});
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+document.addEventListener('fullscreenchange', () => {
+  const icon = document.getElementById('fsIcon');
+  if (document.fullscreenElement) {
+    icon.innerHTML = 'fullscreen_exit';
+  } else {
+    icon.innerHTML = 'fullscreen';
+  }
+  setTimeout(renderSpread, 100);
+});
+
+
+
+/* ============================================================
+   KEYBOARD SHORTCUTS
+============================================================ */
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   navigate(-1);
+  if (e.key === '+' || e.key === '=') changeZoom(0.15);
+  if (e.key === '-') changeZoom(-0.15);
+  if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+});
+
+/* ============================================================
+   UI HELPERS
+============================================================ */
+function updateUI() {
+  document.getElementById('pageInput').value = currentPage;
+  document.getElementById('btnPrev').disabled = currentPage <= 1;
+  document.getElementById('btnNext').disabled = spreadMode
+    ? currentPage + 2 > totalPages
+    : currentPage >= totalPages;
+
+  const label = `Halaman ${currentPage}${spreadMode && currentPage + 1 <= totalPages ? '–' + (currentPage + 1) : ''} dari ${totalPages}`;
+  document.getElementById('statusText').textContent = label;
+}
+
+function setStatus(msg) {
+  document.getElementById('statusText').textContent = msg;
+}
+
+function showNoPDF(msg) {
+  const spread = document.getElementById('bookSpread');
+  spread.innerHTML = `
+    <div class="flex flex-col items-center gap-3 text-white/55 text-center p-10">
+      <span class="material-symbols-outlined text-[48px] opacity-35">description</span>
+      <p class="text-[14px] max-w-[280px] leading-relaxed">${msg || 'Tidak ada PDF yang dimuat. Kembali ke halaman utama dan pilih buku.'}</p>
+    </div>`;
+  setStatus('Tidak ada dokumen');
+}
+
+/* ============================================================
+   RESIZE → re-render
+============================================================ */
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(renderSpread, 200);
+});
+</script>
+</body>
+</html>
