@@ -3,7 +3,6 @@ tailwind.config = {
     theme: {
         extend: {
             "colors": {
-                // Brand — Emerald
                 "primary": "#1F5C2E",
                 "primary-dark": "#1B5E20",
                 "primary-light": "#EDF5ED",
@@ -11,21 +10,15 @@ tailwind.config = {
                 "primary-container": "#1F5C2E",
                 "on-primary": "#ffffff",
                 "on-primary-container": "#ffffff",
-
-                // Secondary — Sage
                 "secondary": "#4A8C4A",
                 "secondary-dark": "#2C5F2E",
                 "secondary-light": "#F2F7F2",
                 "secondary-muted": "#D8E8D8",
                 "on-secondary": "#ffffff",
-
-                // Tertiary — Forest Dark
                 "tertiary": "#1A2A1A",
                 "tertiary-mid": "#2D4A2D",
                 "tertiary-light": "#EDF5ED",
                 "on-tertiary": "#ffffff",
-
-                // Neutral — Forest Gray
                 "ink": "#1A2A1A",
                 "body": "#2D4A2D",
                 "muted": "#3A5A3A",
@@ -46,8 +39,6 @@ tailwind.config = {
                 "surface-container-highest": "#D1D5DB",
                 "outline": "#8AAA8A",
                 "outline-variant": "#E8EDE8",
-
-                // Functional
                 "success": "#1F5C2E",
                 "warning": "#F57F17",
                 "error": "#DC2626",

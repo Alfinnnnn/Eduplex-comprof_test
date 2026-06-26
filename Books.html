@@ -9,41 +9,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="tailwind-config.js"></script>
-
-    <!-- PDF.js dari CDN untuk membaca meta data PDF (jumlah halaman) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-
-    <!-- Memuat daftar file secara otomatis -->
-    <script src="assets/book/list.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+        <script src="assets/book/list.js"></script>
 </head>
 <body class="bg-background text-on-surface font-body-md selection:bg-primary-muted">
-    
-    <!-- TopNavBar -->
-    <nav class="sticky top-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-md border-b border-outline-variant/20 shadow-[0_4px_16px_rgba(31,92,46,0.15)]">
+        <nav class="sticky top-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-md border-b border-outline-variant/20 shadow-[0_4px_16px_rgba(31,92,46,0.15)]">
         <div class="flex justify-between items-center px-6 md:px-gutter-desktop h-20 max-w-container-max mx-auto">
             <a href="index.html" class="flex items-center gap-2">
                 <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSvPHsQULvrPI1C66YDPJsniJuxs8vvSVUj6e0YUYTf_2ZqGb2Mc5KgKcLGLPPo00QzPjrWcAW5EeUddhewbYYa2Cd8NuzAbOTazyvkFij1dnwYJ4cEol3I2YftIvVLuU-Ssk3aC8E0rRCgUnmbypMTBxMLcHD19Oho0cJ1jM3Ti7TNFUwOg-PFVAI2aKkYwEZzTBK0eW00n7Lh-d08W8L5gb31OZjbssdBRZn36tqXC_RVso-UhTuoukeoSRJRM3n8EgCGoK4EGA" alt="Eduplex Logo" class="h-auto w-[120px] md:w-[140px] object-contain">
             </a>
-            
-            <!-- Desktop Nav -->
-            <div class="hidden md:flex items-center gap-space-lg">
+                        <div class="hidden md:flex items-center gap-space-lg">
                 <a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="index.html">Home</a>
                 <a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="Services.html">Services</a>
                 <a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="About.html">About</a>
-                <!-- We can make 'Books' active if we add it to the nav, or just leave it standard. -->
-                <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md transition-colors duration-200" href="Books.html">Library</a>
+                                <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md transition-colors duration-200" href="Books.html">Library</a>
                 <a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="Contact.html">Contact</a>
                 <button onclick="window.location.href='Contact.html'" class="bg-primary-container text-white font-label-md text-label-md px-space-md py-2.5 rounded-lg font-bold shadow-[0_4px_16px_rgba(31,92,46,0.15)] active:scale-95 transition-transform">Join Now</button>
             </div>
-            
-            <!-- Mobile Toggle -->
-            <button id="mobile-menu-btn" class="md:hidden text-primary">
+                        <button id="mobile-menu-btn" class="md:hidden text-primary">
                 <span class="material-symbols-outlined">menu</span>
             </button>
         </div>
-        
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/20 px-6 py-4 absolute w-full left-0 top-20 shadow-[0_4px_16px_rgba(31,92,46,0.15)]">
+                <div id="mobile-menu" class="hidden md:hidden bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/20 px-6 py-4 absolute w-full left-0 top-20 shadow-[0_4px_16px_rgba(31,92,46,0.15)]">
             <div class="flex flex-col gap-4">
                 <a class="text-on-surface-variant font-medium font-label-md text-lg hover:text-primary transition-colors duration-200" href="index.html">Home</a>
                 <a class="text-on-surface-variant font-medium font-label-md text-lg hover:text-primary transition-colors duration-200" href="Services.html">Services</a>
@@ -54,31 +41,22 @@
             </div>
         </div>
     </nav>
-
     <main class="min-h-screen bg-surface-container-low">
-        
-        <!-- Hero Section -->
-        <section class="bg-primary text-white py-16 relative overflow-hidden">
+                <section class="bg-primary text-white py-16 relative overflow-hidden">
             <div class="max-w-container-max mx-auto px-6 md:px-gutter-desktop relative z-10">
                 <div class="font-label-md tracking-widest uppercase text-primary-muted mb-3 font-semibold text-sm">Perpustakaan Digital</div>
                 <h1 class="font-display-hero-mobile md:font-display-hero mb-4 text-white">Baca buku Anda di mana saja</h1>
                 <p class="font-body-lg text-white/80 max-w-2xl">Baca PDF dari koleksi tersedia di browser dengan tampilan flipbook.</p>
             </div>
-            <!-- Deco -->
-            <div class="absolute -top-16 -right-16 w-96 h-96 rounded-full border-[60px] border-white/5 pointer-events-none"></div>
+                        <div class="absolute -top-16 -right-16 w-96 h-96 rounded-full border-[60px] border-white/5 pointer-events-none"></div>
         </section>
-
-        <!-- Toolbar -->
-        <div class="border-b border-outline-variant/30 bg-surface-container-lowest sticky top-20 z-40 shadow-sm">
+                <div class="border-b border-outline-variant/30 bg-surface-container-lowest sticky top-20 z-40 shadow-sm">
             <div class="max-w-container-max mx-auto px-6 md:px-gutter-desktop py-4 flex flex-col md:flex-row items-center gap-4">
-                
-                <!-- Search & Filter Wrapper -->
-                <div class="flex w-full md:w-auto flex-1 gap-3">
+                                <div class="flex w-full md:w-auto flex-1 gap-3">
                     <div class="relative flex-1 min-w-[200px] max-w-xs">
                         <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
                         <input type="text" id="searchInput" oninput="filterBooks()" class="w-full pl-10 pr-4 py-2.5 bg-surface-container border border-outline-variant/50 rounded-lg focus:border-primary focus:bg-white outline-none transition-colors font-body-md text-sm" placeholder="Cari judul atau penulis...">
                     </div>
-                    
                     <select id="categoryFilter" onchange="filterBooks()" class="py-2.5 px-4 bg-surface-container border border-outline-variant/50 rounded-lg focus:border-primary outline-none cursor-pointer font-body-md text-sm text-on-surface">
                         <option value="">Semua Kategori</option>
                         <option value="Sains">Sains & Teknologi</option>
@@ -87,11 +65,7 @@
                         <option value="Umum">Umum</option>
                     </select>
                 </div>
-                
-                <!-- Action Buttons Wrapper -->
-                <div class="flex w-full md:w-auto items-center justify-between md:justify-end gap-3">
-
-
+                                <div class="flex w-full md:w-auto items-center justify-between md:justify-end gap-3">
                     <div class="flex gap-2">
                         <button id="btnGridView" class="w-10 h-10 flex items-center justify-center border border-primary rounded-lg text-primary bg-primary-light transition-colors" onclick="setViewMode('grid')" title="Grid view">
                             <span class="material-symbols-outlined text-[20px]">grid_view</span>
@@ -103,26 +77,15 @@
                 </div>
             </div>
         </div>
-
-        <!-- Main Content -->
-        <div class="max-w-container-max mx-auto px-6 md:px-gutter-desktop py-12">
-            
-
-            <!-- Book Collection -->
-            <div class="mb-4">
+                <div class="max-w-container-max mx-auto px-6 md:px-gutter-desktop py-12">
+                        <div class="mb-4">
                 <span class="font-label-md text-sm font-bold tracking-widest uppercase text-on-surface-variant">Koleksi Tersedia</span>
             </div>
-            
-            <!-- Grid Container -->
-            <div id="bookGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                <!-- Cards generated by JS -->
-            </div>
-
+                        <div id="bookGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                            </div>
         </div>
     </main>
-
-    <!-- Footer -->
-    <footer class="bg-surface-container-high pt-space-xl mt-auto">
+        <footer class="bg-surface-container-high pt-space-xl mt-auto">
         <div class="max-w-container-max mx-auto px-6 md:px-gutter-desktop grid grid-cols-1 md:grid-cols-3 gap-space-md">
             <div>
                 <img alt="Eduplex Logo" class="w-[140px] h-auto object-contain mb-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxQMDNXFrUxQqphmR7bVHRkNydKAgdsBdJZwlGEcLPlimrgs941CuUKOgMs2NCfuQTmw3vkKKNcNYsZUf9hH2WR1H3PJgGcB5wICrWb7JgysENfMQUP7TuNSx9UhR72vw6457KRgoqA1QOoH10pZIJNm6QbpIdBb0O_mS3HovRyIVYz0iAoW-pHIjvAA_G_Lj_9LB1kNBlCJqHNyd_OI2txdFODkvUr5dJV9ffNpD81YnBq2ofaxsBVMQSx8jFrYFRYSZcLFO1aS0">
@@ -157,9 +120,8 @@
             © 2026 Eduplex Bandung. All rights reserved.
         </div>
     </footer>
-
     <script>
-        // Navbar blur behavior on scroll
+        
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
             if (window.scrollY > 20) {
@@ -168,28 +130,21 @@
                 nav.classList.remove('py-2');
             }
         });
-
-        // Mobile Menu Toggle
+        
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        
         if (mobileMenuBtn && mobileMenu) {
             mobileMenuBtn.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
         }
-
-        /* ============================================================
-           DATA BUKU (OTOMATIS DARI NAMA FILE)
-        ============================================================ */
+        
         let BOOKS = [];
         let filteredBooks = [];
         let currentView = 'grid';
-
-        /* ── RENDER KARTU ── */
+        
         function renderBooks(books) {
             const grid = document.getElementById('bookGrid');
-            
             if (books.length === 0) {
                 grid.className = 'w-full py-12';
                 grid.innerHTML = `
@@ -199,18 +154,15 @@
                     </div>`;
                 return;
             }
-
-            // Restore correct grid/list class layout
+            
             if (currentView === 'grid') {
                 grid.className = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6';
             } else {
                 grid.className = 'grid grid-cols-1 md:grid-cols-2 gap-4';
             }
-
             grid.innerHTML = books.map(book => {
                 const isGrid = currentView === 'grid';
                 
-                // Cover template
                 const coverHTML = book.cover
                     ? `<img src="${book.cover}" alt="${book.title}" class="w-full h-full object-cover" loading="lazy"/>`
                     : `<div class="w-full h-full flex flex-col items-center ${isGrid ? 'justify-end p-4' : 'justify-center p-2'} relative overflow-hidden" style="background: linear-gradient(160deg, ${book.coverTop}, ${book.coverBot})">
@@ -218,7 +170,6 @@
                            <div class="font-headline-section-mobile ${isGrid ? 'text-[14px]' : 'text-[10px]'} leading-tight text-white text-center relative z-10">${book.title}</div>
                            ${isGrid ? `<div class="font-caption text-[11px] text-white/70 mt-1 text-center relative z-10">${book.author}</div>` : ''}
                        </div>`;
-
                 if (isGrid) {
                     return `
                         <div class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(31,92,46,0.12)] hover:border-primary-muted transition-all flex flex-col h-full group" onclick="openBook('${book.file}', '${encodeURIComponent(book.title)}', '${book.pages}')">
@@ -253,8 +204,7 @@
                 }
             }).join('');
         }
-
-        /* ── FILTER ── */
+        
         function filterBooks() {
             const q = document.getElementById('searchInput').value.toLowerCase();
             const cat = document.getElementById('categoryFilter').value;
@@ -265,36 +215,29 @@
             });
             renderBooks(filteredBooks);
         }
-
-        /* ── VIEW MODE ── */
+        
         function setViewMode(mode) {
             currentView = mode;
-            
             const btnGrid = document.getElementById('btnGridView');
             const btnList = document.getElementById('btnListView');
-
-            // Reset buttons
+            
             btnGrid.className = 'w-10 h-10 flex items-center justify-center border border-outline-variant/50 rounded-lg text-on-surface-variant hover:border-primary hover:text-primary transition-colors bg-surface-container-lowest';
             btnList.className = 'w-10 h-10 flex items-center justify-center border border-outline-variant/50 rounded-lg text-on-surface-variant hover:border-primary hover:text-primary transition-colors bg-surface-container-lowest';
-
-            // Active button
+            
             if (mode === 'grid') {
                 btnGrid.className = 'w-10 h-10 flex items-center justify-center border border-primary rounded-lg text-primary bg-primary-light transition-colors';
             } else {
                 btnList.className = 'w-10 h-10 flex items-center justify-center border border-primary rounded-lg text-primary bg-primary-light transition-colors';
             }
-
             renderBooks(filteredBooks);
         }
-
-        /* ── BUKA VIEWER ── */
+        
         function openBook(pdfPath, titleEncoded, pages) {
             const title = decodeURIComponent(titleEncoded);
             const params = new URLSearchParams({ pdf: pdfPath, title, pages });
             window.location.href = 'viewer.html?' + params.toString();
         }
-
-        /* ── TEBAK KATEGORI BUKU ── */
+        
         function guessCategory(title) {
             const t = title.toLowerCase();
             if (t.includes('data') || t.includes('analisis') || t.includes('statistik') || t.includes('analitik')) return 'Data & Statistik';
@@ -307,8 +250,7 @@
             if (t.includes('pendidikan') || t.includes('education') || t.includes('belajar') || t.includes('sekolah')) return 'Pendidikan';
             return 'Buku Umum';
         }
-
-        /* ── HITUNG HALAMAN PDF ── */
+        
         async function getPdfPageCount(url) {
             try {
                 const loadingTask = pdfjsLib.getDocument(url);
@@ -319,40 +261,33 @@
                 return "-";
             }
         }
-
-        /* ── GENERATE BUKU DARI LIST.JS ── */
+        
         async function fetchBooksAutomatically() {
             try {
-                // Setup worker PDF.js
+                
                 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
-                // Gunakan daftar file dari list.js
+                
                 if (!window.BOOK_FILES || window.BOOK_FILES.length === 0) {
                     console.warn("Daftar buku kosong.");
                     BOOKS = [];
                     renderBooks(BOOKS);
                     return;
                 }
-                
                 const uniquePdfs = [...new Set(window.BOOK_FILES)];
-                
                 const colors = [
-                    ['#1F5C2E', '#0a2213'], // Hijau
-                    ['#185FA5', '#042C53'], // Biru
-                    ['#854F0B', '#412402'], // Coklat
-                    ['#534AB7', '#26215C'], // Ungu
-                    ['#993556', '#4B1528']  // Merah
+                    ['#1F5C2E', '#0a2213'], 
+                    ['#185FA5', '#042C53'], 
+                    ['#854F0B', '#412402'], 
+                    ['#534AB7', '#26215C'], 
+                    ['#993556', '#4B1528']  
                 ];
-
                 const booksPromises = uniquePdfs.map(async (filename, index) => {
                     const title = filename.replace(/\.pdf$/i, '').trim();
                     const author = "-";
                     const color = colors[index % colors.length];
                     const category = guessCategory(title);
-                    
                     const fileUrl = `assets/book/${filename}`;
                     const pages = await getPdfPageCount(fileUrl);
-
                     return {
                         id: index + 1,
                         title: title,
@@ -366,19 +301,15 @@
                         coverBot: color[1],
                     };
                 });
-
                 BOOKS = await Promise.all(booksPromises);
-
             } catch (e) {
                 console.warn("Gagal membaca daftar file otomatis.", e);
                 BOOKS = [];
             }
-
             filteredBooks = [...BOOKS];
             renderBooks(BOOKS);
         }
-
-        /* ── INIT ── */
+        
         fetchBooksAutomatically();
     </script>
 </body>

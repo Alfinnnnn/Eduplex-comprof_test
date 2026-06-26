@@ -1,15 +1,12 @@
-// Chat Widget Logic
 const chatToggle = document.getElementById('chat-toggle');
 const chatWindow = document.getElementById('chat-window');
 const closeChat = document.getElementById('close-chat');
 const chatMessages = document.getElementById('chat-messages');
 const chatAttentionElements = document.getElementById('chat-attention-elements');
-
 function toggleChat() {
     if (chatWindow.classList.contains('hidden')) {
         chatWindow.classList.remove('hidden');
         if (chatAttentionElements) chatAttentionElements.classList.add('opacity-0', 'pointer-events-none');
-        // Small delay to allow display:block to apply before animating opacity/transform
         setTimeout(() => {
             chatWindow.classList.remove('opacity-0', 'translate-y-4');
         }, 10);
@@ -18,17 +15,14 @@ function toggleChat() {
         if (chatAttentionElements) chatAttentionElements.classList.remove('opacity-0', 'pointer-events-none');
         setTimeout(() => {
             chatWindow.classList.add('hidden');
-        }, 300); // Wait for transition
+        }, 300);
     }
 }
-
 if (chatToggle && closeChat) {
     chatToggle.addEventListener('click', toggleChat);
     closeChat.addEventListener('click', toggleChat);
 }
-
 function askFAQ(question, answer) {
-    // Add user message
     const userMsg = document.createElement('div');
     userMsg.className = 'flex items-end justify-end gap-2 max-w-[85%] self-end';
     userMsg.innerHTML = `
@@ -37,11 +31,7 @@ function askFAQ(question, answer) {
         </div>
     `;
     chatMessages.appendChild(userMsg);
-    
-    // Scroll to bottom
     chatMessages.scrollTop = chatMessages.scrollHeight;
-
-    // Simulate AI thinking and reply
     setTimeout(() => {
         const aiMsg = document.createElement('div');
         aiMsg.className = 'flex items-start gap-2 max-w-[85%]';
@@ -54,7 +44,6 @@ function askFAQ(question, answer) {
             </div>
         `;
         chatMessages.appendChild(aiMsg);
-        // Scroll to bottom again
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }, 500);
 }

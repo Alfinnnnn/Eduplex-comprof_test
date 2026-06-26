@@ -36,8 +36,6 @@
     opacity: 1;
     transform: translateY(0);
 }
-
-/* ── VIEWER PAGE STYLES ── */
 .viewer-page {
     overflow: hidden;
     user-select: none;
@@ -168,8 +166,6 @@
     .toolbar-pill { position: static; transform: none; margin: 0 auto; }
     .topbar { flex-wrap: wrap; height: auto; padding: 8px 14px; gap: 6px; }
 }
-
-/* ── 3D PAGE TURN STYLES ── */
 .flip-overlay {
     position: absolute;
     display: flex;
